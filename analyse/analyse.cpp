@@ -11,15 +11,9 @@
 #include "analyse.hpp"
 #include "analysePriv.hpp"
 
-void analyse::HelloWorld(const char * s)
+int analyse(const char * input, const char * output)
 {
-    analysePriv *theObj = new analysePriv;
-    theObj->HelloWorldPriv(s);
-    delete theObj;
-};
-
-void analysePriv::HelloWorldPriv(const char * s) 
-{
-    std::cout << s << std::endl;
-};
-
+    std::cout << input << "    " << output << std::endl;
+    
+    return 0;
+}

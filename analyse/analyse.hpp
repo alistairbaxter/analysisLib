@@ -13,11 +13,10 @@
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
-class analyse
+extern "C"
 {
-    public:
-    void HelloWorld(const char *);
-};
+    int analyse(const char * input, const char * output);
+}
 
 #pragma GCC visibility pop
 #endif
