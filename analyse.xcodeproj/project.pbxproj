@@ -8,15 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		F32D97C81F18AC1D00A82BD1 /* analyse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F32D97C71F18AC1D00A82BD1 /* analyse.hpp */; };
-		F32D97CA1F18AC1D00A82BD1 /* analysePriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F32D97C91F18AC1D00A82BD1 /* analysePriv.hpp */; };
 		F32D97CC1F18AC1D00A82BD1 /* analyse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32D97CB1F18AC1D00A82BD1 /* analyse.cpp */; };
+		F32D97EC1F1D4D0F00A82BD1 /* Analyser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F32D97EA1F1D4D0F00A82BD1 /* Analyser.cpp */; };
+		F32D97ED1F1D4D0F00A82BD1 /* Analyser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F32D97EB1F1D4D0F00A82BD1 /* Analyser.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F32D97C41F18AC1D00A82BD1 /* libanalyse.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libanalyse.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32D97C71F18AC1D00A82BD1 /* analyse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = analyse.hpp; sourceTree = "<group>"; };
-		F32D97C91F18AC1D00A82BD1 /* analysePriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = analysePriv.hpp; sourceTree = "<group>"; };
 		F32D97CB1F18AC1D00A82BD1 /* analyse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = analyse.cpp; sourceTree = "<group>"; };
+		F32D97EA1F1D4D0F00A82BD1 /* Analyser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Analyser.cpp; path = ../Analyser.cpp; sourceTree = "<group>"; };
+		F32D97EB1F1D4D0F00A82BD1 /* Analyser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Analyser.hpp; path = ../Analyser.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,8 +51,9 @@
 		F32D97C61F18AC1D00A82BD1 /* analyse */ = {
 			isa = PBXGroup;
 			children = (
+				F32D97EA1F1D4D0F00A82BD1 /* Analyser.cpp */,
+				F32D97EB1F1D4D0F00A82BD1 /* Analyser.hpp */,
 				F32D97C71F18AC1D00A82BD1 /* analyse.hpp */,
-				F32D97C91F18AC1D00A82BD1 /* analysePriv.hpp */,
 				F32D97CB1F18AC1D00A82BD1 /* analyse.cpp */,
 			);
 			path = analyse;
@@ -63,8 +66,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F32D97ED1F1D4D0F00A82BD1 /* Analyser.hpp in Headers */,
 				F32D97C81F18AC1D00A82BD1 /* analyse.hpp in Headers */,
-				F32D97CA1F18AC1D00A82BD1 /* analysePriv.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F32D97EC1F1D4D0F00A82BD1 /* Analyser.cpp in Sources */,
 				F32D97CC1F18AC1D00A82BD1 /* analyse.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,13 +7,94 @@
  *
  */
 
+#include <string>
 #include <iostream>
+#include <fstream>
+
 #include "analyse.hpp"
-#include "analysePriv.hpp"
+#include "Analyser.hpp"
+
 
 int analyse(const char * input, const char * output)
 {
-    std::cout << input << "    " << output << std::endl;
+    //std::cout << "Reading " << input << " and outputting to " << output << std::endl;
     
-    return 0;
+    // Create a local instance of our analysis class
+    analysis::Analyser analyser;
+    
+    std::string inputFileName = std::string(input);
+    std::ifstream inputFile( inputFileName );
+    
+    if (inputFile.is_open())
+    {
+        // Read a line
+        std::string line;
+        while ( getline (inputFile,line) )
+        {
+            if (inputFile.good())
+            {
+                //std::cout << line << '\n';
+                
+                //check if the string represents a valid number
+                for (char currChar : line)
+                {
+                    if (currChar != '-')
+                    {
+                        if (currChar < '0' || currChar > '9')
+                        {
+                            inputFile.close();
+                            return Error_InvalidNumber;
+                        }
+                    }
+                }
+                
+                // Convert the line to a whole number
+                int64_t newNumber = atoll(line.c_str());
+                
+                // Add the number for analysis
+                analyser.addWholeNumber(newNumber);
+                
+                if (!analyser.isAnalysisValid())
+                {
+                    inputFile.close();
+                    return Error_InvalidAnalyis;
+                }
+            }
+            else
+            {
+                // Something went wrong while reading
+                inputFile.close();
+                return Error_ReadError;
+            }
+        }
+        inputFile.close();
+    }
+    else
+    {
+        // We couldn't open the input file
+        return Error_InputFileInvalid;
+    }
+    
+    // Open the file for writing our resuts to
+    std::string outputFileName = std::string(output);
+    std::ofstream outputFile( outputFileName );
+    
+    if (outputFile.is_open())
+    {
+        // rite the count, sum and average to the output file
+        outputFile << analyser.count() << std::endl;
+        outputFile << analyser.sum() << std::endl;
+        outputFile << analyser.average() << std::endl;
+        
+        // Success!
+        if (outputFile.good())
+            return 0;
+        else
+            return Error_WriteError;
+    }
+    else
+    {
+        // We couldn't open the input file
+        return Error_OutputFileInvalid;
+    }
 }
