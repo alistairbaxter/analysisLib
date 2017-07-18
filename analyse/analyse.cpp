@@ -14,6 +14,7 @@
 #include "analyse.hpp"
 #include "Analyser.hpp"
 #include "NumberListParser.hpp"
+#include "NumberListWriter.hpp"
 
 
 int analyse(const char * input, const char * output)
@@ -105,27 +106,23 @@ int analyse(const char * input, const char * output)
     
     // Open the file for writing our resuts to
     std::string outputFileName = std::string(output);
-    std::ofstream outputFile( outputFileName );
     
-    if (outputFile.is_open())
+    analysis::NumberListWriter resultsWriter(outputFileName);
+    
+    if (resultsWriter.isValid())
     {
-        // rite the count, sum and average to the output file
-        outputFile << analyser.count() << std::endl;
-        outputFile << analyser.sum() << std::endl;
-        outputFile << analyser.average() << std::endl;
-        
-        
-        // Success!
-        if (outputFile.good())
-        {
-            outputFile.close();
-            return 0;
-        }
-        else
-        {
-            outputFile.close();
-            return analysis::Error_WriteError;
-        }
+        // Write the count, sum and average to the output file
+        analysis::AnalysisError writeResult = resultsWriter.writeNumber(analyser.count());
+        if (writeResult != analysis::Error_NoError)
+            return writeResult;
+
+        writeResult = resultsWriter.writeNumber(analyser.sum());
+        if (writeResult != analysis::Error_NoError)
+            return writeResult;
+
+        writeResult = resultsWriter.writeNumber(analyser.average());
+
+        return writeResult; // hopefully Error_Success!
     }
     else
     {
