@@ -2,7 +2,7 @@
  *  analyse.cpp
  *  analyse
  *
- *  Created by Alistair Baxter on 14/07/2017.
+ *  Created by Alistair Baxter on 17/07/2017.
  *  Copyright © 2017 Alistair Baxter. All rights reserved.
  *
  */
@@ -38,12 +38,12 @@ int analyse(const char * input, const char * output)
                 //check if the string represents a valid number
                 for (char currChar : line)
                 {
-                    if (currChar != '-')
+                    if (currChar != '-' && currChar != ' ')
                     {
                         if (currChar < '0' || currChar > '9')
                         {
                             inputFile.close();
-                            return Error_InvalidNumber;
+                            return analysis::Error_InvalidNumber;
                         }
                     }
                 }
@@ -57,14 +57,14 @@ int analyse(const char * input, const char * output)
                 if (!analyser.isAnalysisValid())
                 {
                     inputFile.close();
-                    return Error_InvalidAnalyis;
+                    return analysis::Error_InvalidAnalyis;
                 }
             }
             else
             {
                 // Something went wrong while reading
                 inputFile.close();
-                return Error_ReadError;
+                return analysis::Error_ReadError;
             }
         }
         inputFile.close();
@@ -72,7 +72,7 @@ int analyse(const char * input, const char * output)
     else
     {
         // We couldn't open the input file
-        return Error_InputFileInvalid;
+        return analysis::Error_InputFileInvalid;
     }
     
     // Open the file for writing our resuts to
@@ -90,11 +90,11 @@ int analyse(const char * input, const char * output)
         if (outputFile.good())
             return 0;
         else
-            return Error_WriteError;
+            return analysis::Error_WriteError;
     }
     else
     {
         // We couldn't open the input file
-        return Error_OutputFileInvalid;
+        return analysis::Error_OutputFileInvalid;
     }
 }
