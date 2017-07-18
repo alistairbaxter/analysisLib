@@ -86,11 +86,18 @@ int analyse(const char * input, const char * output)
         outputFile << analyser.sum() << std::endl;
         outputFile << analyser.average() << std::endl;
         
+        
         // Success!
         if (outputFile.good())
+        {
+            outputFile.close();
             return 0;
+        }
         else
+        {
+            outputFile.close();
             return analysis::Error_WriteError;
+        }
     }
     else
     {
