@@ -17,8 +17,8 @@ namespace analysis
 {
     
 /**
- * \enum AnalysisError
- * \brief Error return types for the analysis library
+ * @enum AnalysisError
+ * @brief Error return types for the analysis library
  */
 enum AnalysisError
 {
@@ -36,14 +36,20 @@ enum AnalysisError
 extern "C"
 {
     /**
-     * Determine whether the numbers are valid for analysis.
+     * Perform Analysis on a list of numbers read from a specified file, and
+     * write the results to another specified file.
      *
-     * If there has been a maths overflow during summation,
-     * or if a number could not be added to the list, or the
-     * list is empty, then it will not be considered valid.
+     * Each line in the input file must be a standalone whole number.
      *
-     * @return Zero for success, or a negative number if an error occurred, corresponding to
+     * In the output file:
+     * The count of the numbers read will be written to a line.
+     * The sum of the numbers read will be written to a line.
+     * The average of the numbers will be written read to a line.
      *
+     * @param input Filename for the file containing a lit of numbers to be read from.
+     * @param output Filename for the file to which results will be written.
+     *
+     * @return 0 if the operation was successful, or a negative number otherwise
      */
     int analyse(const char * input, const char * output);
 }
