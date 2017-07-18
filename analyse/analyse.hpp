@@ -18,9 +18,9 @@ namespace analysis
     
 /**
  * \enum AnalysisError
- * \brief specifies the available DCCP packet types
+ * \brief Error return types for the analysis library
  */
-enum
+enum AnalysisError
 {
     Error_NoError               =  0, /**< No error, function was successful */
     Error_InputFileInvalid      = -1, /**< An error occurred when trying to open the input file */
@@ -29,7 +29,7 @@ enum
     Error_InvalidAnalyis        = -4, /**< The list of numbers was not valid for analysis */
     Error_OutputFileInvalid     = -5, /**< There was a problem when opening the output file */
     Error_WriteError            = -6  /**< There was a problem when writing to the output file */
-} AnalysisError;
+};
 
 }
 

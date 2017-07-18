@@ -13,6 +13,7 @@
 
 #include "analyse.hpp"
 #include "Analyser.hpp"
+#include "NumberListParser.hpp"
 
 
 int analyse(const char * input, const char * output)
@@ -21,8 +22,10 @@ int analyse(const char * input, const char * output)
     
     // Create a local instance of our analysis class
     analysis::Analyser analyser;
+
     
     std::string inputFileName = std::string(input);
+#if 0
     std::ifstream inputFile( inputFileName );
     
     if (inputFile.is_open())
@@ -73,6 +76,31 @@ int analyse(const char * input, const char * output)
     {
         // We couldn't open the input file
         return analysis::Error_InputFileInvalid;
+    }
+#endif
+    analysis::NumberListParser inputParser(inputFileName);
+    
+    if (!inputParser.isValid())
+        return analysis::Error_InputFileInvalid;
+    
+    while(inputParser.numbersRemaining())
+    {
+        // Convert the line to a whole number
+        int64_t newNumber = 0;
+        
+        analysis::AnalysisError parseError = inputParser.getNextNumber(newNumber);
+        
+        if(parseError != analysis::Error_NoError)
+            return parseError;
+        
+        // Add the number for analysis
+        analyser.addWholeNumber(newNumber);
+        
+        if (!analyser.isAnalysisValid())
+        {
+            return analysis::Error_InvalidAnalyis;
+        }
+
     }
     
     // Open the file for writing our resuts to
